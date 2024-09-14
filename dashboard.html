@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Dashboard - Crop Suggestion Platform</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body{
+        background-image: url(dash.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <!-- Navigation Bar -->
+  <header class="bg-green-600 text-white p-4">
+    <nav class="flex justify-between items-center">
+      <h1 class="text-3xl font-bold">Crop Suggestion Platform</h1>
+      <ul class="flex space-x-6">
+        <li><a href="/crop_suggestion.html" class="text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300 hover:bg-green-500">Crop Suggestions</a></li>
+        <li><a href="/contact.html" class="text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300 hover:bg-green-500">Contact</a></li>
+        <li><a href="/index.html" class="text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300 hover:bg-green-500">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Dashboard Section -->
+  <main class="container mx-auto px-4 py-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Profile Section -->
+      <section class="bg-white p-6 rounded-lg shadow-lg">
+        <h2 class="text-2xl font-semibold mb-4">User Profile</h2>
+        <div class="flex items-center mb-4">
+          <img src="https://via.placeholder.com/100" alt="User Profile" class="w-24 h-24 rounded-full border-2 border-green-600">
+          <div class="ml-4">
+            <p class="text-xl font-bold" id="welcome"></p>
+            
+          </div>
+        </div>
+        <a href="/profile.html" class="text-green-600 hover:underline">Edit Profile</a>
+      </section>
+
+      <!-- Crop Recommendations Section -->
+      <section class="bg-white p-6 rounded-lg shadow-lg md:col-span-2">
+        <h2 class="text-2xl font-semibold mb-4">Crop Recommendations</h2>
+        <p class="mb-4 text-gray-600">Based on your field size and soil type, we recommend the following crops:</p>
+        <ul class="space-y-4">
+          <li class="bg-gray-100 p-4 rounded-lg shadow-sm">
+            <h3 class="text-xl font-semibold">Corn</h3>
+            <p class="text-gray-600">Suitable for medium to large fields with loamy soil.</p>
+          </li>
+          <li class="bg-gray-100 p-4 rounded-lg shadow-sm">
+            <h3 class="text-xl font-semibold">Wheat</h3>
+            <p class="text-gray-600">Ideal for cooler climates with well-drained soil.</p>
+          </li>
+          <li class="bg-gray-100 p-4 rounded-lg shadow-sm">
+            <h3 class="text-xl font-semibold">Soybean</h3>
+            <p class="text-gray-600">Best for well-drained soil with moderate rainfall.</p>
+          </li>
+        </ul>
+        <a href="/crop_suggestion.html" class="mt-4 inline-block bg-green-600 text-white font-bold py-2 px-4 rounded hover:bg-green-700">Get More Suggestions</a>
+      </section>
+    </div>
+
+    <!-- Recent Activities Section -->
+    <section class="bg-white p-6 rounded-lg shadow-lg mt-8">
+      <h2 class="text-2xl font-semibold mb-4">Recent Activities</h2>
+      <ul class="space-y-4">
+        <li class="border-b border-gray-200 pb-4">
+          <p class="text-gray-600">Updated crop preferences for your field.</p>
+          <span class="text-sm text-gray-500">2 hours ago</span>
+        </li>
+        <li class="border-b border-gray-200 pb-4">
+          <p class="text-gray-600">Requested advice from an expert.</p>
+          <span class="text-sm text-gray-500">1 day ago</span>
+        </li>
+        <li class="border-b border-gray-200 pb-4">
+          <p class="text-gray-600">Received new crop recommendations.</p>
+          <span class="text-sm text-gray-500">3 days ago</span>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white p-4 text-center mt-8">
+    <p>© 2024 Crop Suggestion Platform. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Get username from URL parameter and display it
+    const urlParams = new URLSearchParams(window.location.search);
+    const username = urlParams.get('username');
+    document.getElementById('welcome').innerText = username.toUpperCase();
+</script>
+</body>
+</html>

@@ -1,0 +1,176 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Contact Us - Crop Suggestion Platform</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- for EMAILJS -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <style>
+    body {
+      background-color: #f3f4f6; /* Light gray background */
+      margin: 0;
+      padding: 0;
+    }
+    .header {
+      background-image: url('contact.jpg'); /* Replace with your background image */
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 5rem 0; /* Increased header height */
+      text-align: center;
+      position: relative;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
+      z-index: 1;
+    }
+    .header h1 {
+      position: relative;
+      z-index: 2;
+      font-size: 3rem; /* Increased font size */
+    }
+    .contact-section {
+      background: rgba(255, 255, 255, 0.95); /* Slightly transparent white background */
+      padding: 4rem 0;
+    }
+    .contact-form {
+      background: white;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      border-radius: 0.375rem; /* Rounded corners */
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: #4a5568; /* Darker gray for focus */
+      box-shadow: 0 0 0 2px rgba(67, 160, 71, 0.5); /* Green shadow */
+    }
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: white;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      height: 100%;
+    }
+    .contact-details i {
+      color: #4a5568; /* Darker gray color for icons */
+    }
+    .map-container iframe {
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <header class="header">
+    <h1 class="text-4xl font-bold">Contact Us</h1>
+  </header>
+
+  <!-- Contact Us Section -->
+  <section class="contact-section">
+    <div class="container mx-auto px-4">
+
+
+      <div class="md:flex md:justify-between">
+        <!-- Contact Form -->
+        <div class="md:w-1/2 contact-form mb-8 md:mb-0">
+          <h3 class="text-2xl font-semibold mb-4">Send Us a Message</h3>
+          <form>
+            <div class="mb-4">
+              <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+              <input type="text" id="name" name="name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm" required>
+            </div>
+            <div class="mb-4">
+              <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+              <input type="email" id="email" name="email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm" required>
+            </div>
+            <div class="mb-4">
+              <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+              <textarea id="message" name="message" rows="4" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm" required></textarea>
+            </div>
+            <button onclick="sendMail()" class="bg-green-600 text-white font-bold py-2 px-4 rounded hover:bg-green-700 focus:outline-none">Send</button>
+          </form>
+        </div>
+
+        <!-- Contact Details -->
+        <div class="md:w-1/2 md:pl-8">
+          <div class="contact-details">
+            <h3 class="text-2xl font-semibold mb-4">Contact Details</h3>
+            <ul class="space-y-4 text-lg">
+              <li class="flex items-center">
+                <i class="fas fa-map-marker-alt w-6 h-6 mr-4"></i>
+                <span>Lovely Professional University</span>
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-phone w-6 h-6 mr-4"></i>
+                <span>+91 8307167417</span>
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-envelope w-6 h-6 mr-4"></i>
+                <span>kshitijyadav@lpu.in</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map Section -->
+      <div class="mt-12">
+        <h3 class="text-2xl font-semibold mb-4">Find Us</h3>
+        <div class="aspect-w-16 aspect-h-9">
+          <iframe class="w-full h-full rounded-lg shadow-lg" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.158882307283!2d-122.4194184846816!3d37.77492927975992!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085807f6b7f0d9d%3A0x6d0b145e54f1f1a1!2sSan%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1654684631411!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white p-4 text-center">
+    <p>© 2024 Crop Suggestion Platform. All rights reserved.</p>
+  </footer>
+
+  <script type="text/javascript">
+    function sendMail() {
+        (function() {
+            emailjs.init("NCj-_d4fqh_cSGv06");
+        })();
+
+        var params = {
+            from_name: document.querySelector('#name').value,
+            email_id: document.querySelector('#email').value,
+            message: document.querySelector('#message').value
+        }
+        
+        emailjs.send("service_3nf9sqi", "template_l7bq75k", params)
+        .then(function(response) {
+            alert("Message Sent!!");
+        }, function(error) {
+            alert("Message Failed!!");
+        });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: url('farmer.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .overlay {
+            background-color: none; /* Semi-transparent overlay */
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .form-container {
+            background-color: rgb(255, 255, 255, 0.5); /* Opaque background for the form */
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        .error {
+            color: red; /* Tailwind's red-400 color */
+            font-size: 0.875rem; /* Tailwind's text-sm size */
+            margin-top: 0.25rem; /* Tailwind's mt-1 */
+            font-weight: bold
+        }
+    </style>
+</head>
+<body>
+
+    <div class="overlay">
+        <div class="form-container">
+            <h2 class="text-2xl font-bold mb-6 text-center text-black-700">Log In</h2>
+            <form id="signupForm" action="/login" method="post">
+
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-bold text-black-600">Email</label>
+                    <input type="email" id="email" name="email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 sm:text-sm" required>
+                </div>
+
+                <div class="mb-4">
+                    <label for="password" class="block text-sm font-bold text-black-600">Password</label>
+                    <div class="relative">
+                        <input type="password" id="password" name="password" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 sm:text-sm" required>
+                        <button type="button" id="togglePassword" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500">
+                            <svg id="eyeIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 12l1.8-3.6L4 6l4.8 3 1.8 3.6L12 12l-1.8 3.6L8 18l-4.8-3L1 12zm20 0l-1.8 3.6L20 18l-4.8-3-1.8-3.6L12 12l1.8-3.6L16 6l4.8 3L22 12z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <p id="passwordError" class="error hidden">Password must be 8-20 characters long and include uppercase, lowercase, number, and special character.</p>
+                </div>
+
+                <div class="mb-6">
+                    <button type="submit" class="w-full py-2 px-4 bg-blue-500 text-white font-semibold rounded-md shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                        Sign In
+                    </button>
+                </div>
+
+                <p class="text-center font-bold text-sm text-black-600">
+                    Don't have an account? <a href="signup.html" class="text-blue-500 hover:text-blue-600">Sign Up</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Toggle password visibility
+        document.getElementById('togglePassword').addEventListener('click', function () {
+            const passwordField = document.getElementById('password');
+            const eyeIcon = document.getElementById('eyeIcon');
+
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                eyeIcon.innerHTML = '<path d="M1 12l1.8-3.6L4 6l4.8 3 1.8 3.6L12 12l-1.8 3.6L8 18l-4.8-3L1 12zm20 0l-1.8 3.6L20 18l-4.8-3-1.8-3.6L12 12l1.8-3.6L16 6l4.8 3L22 12z"></path>';
+            } else {
+                passwordField.type = 'password';
+                eyeIcon.innerHTML = '<path d="M12 4.5c-3.8 0-7 2.9-7 7s3.2 7 7 7 7-2.9 7-7-3.2-7-7-7zm0 12c-2.8 0-5-2.2-5-5s2.2-5 5-5 5 2.2 5 5-2.2 5-5 5z"></path>';
+            }
+        });
+
+        // // Validate password
+        // document.getElementById('signupForm').addEventListener('submit', function(event) {
+        //     const passwordField = document.getElementById('password');
+        //     const passwordError = document.getElementById('passwordError');
+        //     const passwordValue = passwordField.value;
+
+        //     // Regular expression for password validation
+        //     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/;
+
+        //     if (!passwordRegex.test(passwordValue)) {
+        //         passwordError.classList.remove('hidden');
+        //         event.preventDefault(); // Prevent form submission
+        //     } else {
+        //         passwordError.classList.add('hidden');
+        //     }
+        // });
+    </script>
+
+</body>
+</html>

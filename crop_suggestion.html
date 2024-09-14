@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Crop Suggestion Form</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .form-container {
+      background-color: rgba(0, 0, 0, 0.5); /* Translucent black background for the form */
+      padding: 2rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background-image: url('crop_suggestion.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .nav {
+      border-radius: 0 0 28px 28px;
+    }
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      display: none; /* Hidden by default */
+    }
+    /* Spinner Styles */
+    .spinner {
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border-left-color: #fff;
+      animation: spin 1s ease infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <header class="nav fixed top-0 left-0 right-0 flex items-center justify-between p-4 bg-gray-800 bg-opacity-70 text-white">
+    <!-- Left top buttons -->
+    <div class="flex space-x-4">
+      <a href="/profile.html" class="bg-green-600 text-white font-bold py-3 px-6 rounded-full hover:bg-green-700">Profile</a>
+      <a href="/about.html" class="bg-green-600 text-white font-bold py-3 px-6 rounded-full hover:bg-green-700">About</a>
+    </div>
+    <!-- Center Title -->
+    <h1 class="text-5xl font-bold">FarmWise</h1>
+    <!-- Right top buttons -->
+    <div class="flex space-x-4">
+      <a href="/contact.html" class="bg-green-600 text-white font-bold py-3 px-6 rounded-full hover:bg-green-700">Contact</a>
+      <a href="/logout" class="bg-green-600 text-white font-bold py-3 px-6 rounded-full hover:bg-green-700">Logout</a>
+    </div>
+  </header>
+  
+  <main class="container mx-auto px-4 py-16 pt-24">
+    <div class="p-6 rounded-lg shadow-lg max-w-3xl mx-auto form-container mt-12"> <!-- Added mt-12 here -->
+      <h2 class="text-3xl font-bold mb-4 text-center text-white">Crop Suggestion</h2>
+      <form action="/get-crops" method="POST">
+        <!-- Size of the Field -->
+        <div class="mb-4">
+          <label for="field-size" class="block text-sm font-medium text-white">Size of the Field</label>
+          <div class="flex items-center mt-1">
+            <select id="size-unit" name="size_unit" class="block w-1/3 px-3 py-2 border text-center border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
+              <option value="square-meter">Square Meter (m²)</option>
+              <option value="hectare">Hectare (ha)</option>
+              <option value="acre">Acre</option>
+              <option value="square-yard">Square Yard (yd²)</option>
+              <option value="bigha">Bigha</option>
+              <option value="kanal">Kanal</option>
+              <option value="marla">Marla</option>
+            </select>
+            <input type="text" id="field-size" name="field_size" placeholder="Enter size" class="ml-4 block w-2/3 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" required>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label for="month" class="block text-sm font-medium text-white mb-1">Month</label>
+          <select type="text" id="month" name="month" class="block w-full text-center px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
+            <option value="january">January</option>
+            <option value="february">February</option>
+            <option value="march">March</option>
+            <option value="april">April</option>
+            <option value="may">May</option>
+            <option value="june">June</option>
+            <option value="july">July</option>
+            <option value="august">August</option>
+            <option value="september">September</option>
+            <option value="october">October</option>
+            <option value="november">November</option>
+            <option value="december">December</option>
+          </select>
+        </div>
+
+        <!-- Soil Type -->
+        <div class="mb-4">
+          <label for="soil-type" class="block text-sm font-medium text-white mb-1">Soil Type</label>
+          <select id="soil-type" type="text" name="soil_type" class="block w-full px-3 text-center py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
+            <option value="alluvial">Alluvial</option>
+            <option value="black">Black</option>
+            <option value="red">Red</option>
+            <option value="laterite">Laterite</option>
+            <option value="saline">Saline</option>
+          </select>
+        </div>
+
+        <!-- Location -->
+        <div class="mb-4">
+          <label for="city" class="block text-sm font-medium text-white mb-1">Location</label>
+          <div class="flex items-center mt-1">
+            <input type="text" id="city" name="city" placeholder="Enter city" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" required>
+          </div>
+        </div>
+
+        <!-- Water Availability -->
+        <div class="mb-4">
+          <label for="water-availability" class="block text-sm font-medium text-white mb-1">Water Availability</label>
+          <select id="water-availability" name="water_availability" class="block text-center w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
+            <option value="less">Less</option>
+            <option value="enough">Enough</option>
+            <option value="abundant">Abundant</option>
+          </select>
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="bg-green-600 mt-3 mb-2 text-white font-bold py-2 px-5 rounded-full hover:bg-green-700">Get Crop Suggestion</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <!-- Loading Overlay with Spinner -->
+  <div id="loading-overlay" class="loading-overlay">
+    <div class="spinner"></div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.querySelector('form');
+      const loadingOverlay = document.getElementById('loading-overlay');
+
+      form.addEventListener('submit', function() {
+        loadingOverlay.style.display = 'flex'; // Show the loading overlay
+      });
+    });
+  </script>
+</body>
+</html>

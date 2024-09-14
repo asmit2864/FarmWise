@@ -1,0 +1,90 @@
+
+
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Crop Suggestion Platform</title>
+      <!-- Tailwind CSS CDN -->
+      <script src="https://cdn.tailwindcss.com"></script>
+      <style>
+        body {
+          background-image: url('crops.jpg');
+          background-repeat: no-repeat;
+          background-size: cover;
+          font-family: 'Poppins', sans-serif;
+        }
+  
+        /* Header with black opacity */
+        header {
+          background-color: rgba(0, 0, 0, 0.4);
+        }
+  
+        /* Increased FarmWise text size */
+        h1 {
+        
+          font-size: 5rem; /* Larger font size */
+        }
+  
+        /* Outline on button hover */
+        .animate-button:hover {
+          transform: scale(1.05);
+          outline: 2px solid white; /* Add white outline on hover */
+        }
+  
+        /* Curved buttons with more border-radius */
+        .animate-button {
+          border-radius: 30px; /* Make buttons more curved */
+        }
+  
+        /* Reduced opacity on the middle div of the hero section */
+        .hero-text-bg {
+          background-color: rgba(0, 0, 0, 0.4); /* Lighter black opacity */
+          padding: 50px;
+          border-radius: 8px;
+          margin-top:-95px;
+        }
+      </style>
+    </head>
+    <body>
+    
+      <!-- Navigation Bar -->
+      <header class="text-white p-4 shadow-lg">
+        <nav class="flex justify-between items-center">
+          <!-- Left Side (Logo/Title) -->
+          <h1 class="text-5xl font-bold font-serif ml-5">FarmWise</h1>
+          
+          <!-- Right Side (Navigation Links and Buttons) -->
+          <div class="flex space-x-6 items-center">
+            <a href="/about.html" class="text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300 nav-link">About</a>
+            <a href="/contact.html" class="text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300 nav-link">Contact</a>
+            <a href="/login.html" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 animate-button transition-transform duration-200">Login</a>
+            <a href="/signup.html" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 animate-button transition-transform duration-200">Signup</a>
+          </div>
+        </nav>
+      </header>
+    
+      <!-- Hero Section -->
+      <section class="h-screen flex items-center justify-center" style="background-image: url('path-to-image.jpg'); background-size: cover;">
+        <div class="text-center text-white hero-text-bg">
+          <h2 class="text-5xl font-bold mb-4">Find the Best Crop for Your Land</h2>
+          <p class="text-xl mb-8">Get crop recommendations based on your field size and soil type.</p>
+          <a href="/login.html" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 animate-button transition-transform duration-200">Get Crop Suggestions</a>
+        </div>
+      </section>
+    
+      <!-- Footer -->
+      <footer class="bg-gray-900 text-white p-4 text-center">
+        <p>© 2024 Crop Suggestion Platform. All rights reserved.</p>
+        <div class="flex justify-center mt-2 space-x-4">
+          <a href="#" class="text-blue-400 hover:text-blue-600 transition-colors">Facebook</a>
+          <a href="#" class="text-blue-400 hover:text-blue-600 transition-colors">Twitter</a>
+          <a href="#" class="text-blue-400 hover:text-blue-600 transition-colors">Instagram</a>
+        </div>
+      </footer>
+    
+    </body>
+  </html>
+  

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+      .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+
+      .spinner {
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        border-left: 4px solid #3498db;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen m-0">
+    <div class="bg-white p-8 rounded-lg shadow-lg max-w-lg w-full"> <!-- Increased padding and max-width -->
+        <h1 class="text-4xl font-bold text-blue-600 mb-6">Workers Search</h1> <!-- Increased font size -->
+        <form action="/getWorkers" method="post">
+            <div class="mb-6">
+                <label for="city" class="block text-gray-700 text-xl font-semibold mb-2">Enter your city:</label> <!-- Increased font size -->
+                <input type="text" id="city" name="city" class="w-full px-4 py-3 border border-blue-500 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-blue-300" placeholder="City"> <!-- Increased padding and font size -->
+            </div>
+            <button type="submit" class="w-full bg-blue-500 text-white py-3 px-6 rounded-lg text-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">Search</button> <!-- Increased padding and font size -->
+        </form>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+      <div class="spinner"></div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('form');
+        const loadingOverlay = document.getElementById('loading-overlay');
+
+        form.addEventListener('submit', function() {
+          loadingOverlay.style.display = 'flex'; // Show the loading overlay
+        });
+      });
+    </script>
+</body>
+</html>
